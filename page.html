@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="page.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <title>Landing page</title>
+</head>
+<body>
+    <picture>
+        <img src="https://sdmntprwestus.oaiusercontent.com/files/00000000-337c-6230-aebf-344ef06c57bc/raw?se=2025-08-04T17%3A37%3A17Z&sp=r&sv=2024-08-04&sr=b&scid=a34a6336-fd14-5511-984f-e978aea9a871&skoid=7399a3a4-0259-4d43-bcd6-a56ceeb4c28b&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-08-03T21%3A33%3A33Z&ske=2025-08-04T21%3A33%3A33Z&sks=b&skv=2024-08-04&sig=zfZ8qEOqMrDutvNAONY5GMZEj5g85PnYucAHv8c1JMs%3D" alt="banner principal" class="banner"> 
+    </picture>
+    <div class="cuenta">
+    <h1>CUENTA REGRESIVA PARA QUE ACABE LA OFERTA!</h1>
+    <br>
+    <div id="countdown"></div>
+    </div>
+        <section class="faq" id="faq">
+    <h2>Preguntas Frecuentes</h2>
+    <div class="faq-item">
+        <button class="faq-question">¿Cuándo comienzan las ofertas de Ropa para niños?
+            <i class="fas fa-chevron-down arrow"></i> <!-- Ícono de Font Awesome -->
+        </button>
+        <div class="faq-answer">
+            <p>Las ofertas comienzan el 4 de noviembre del 2025 y estarán disponibles por tiempo limitado.</p>
+        </div>
+    </div>
+    <div class="faq-item">
+        <button class="faq-question">¿Hacen envíos a todo el país?
+            <i class="fas fa-chevron-down arrow"></i>
+        </button>
+        <div class="faq-answer">
+            <p>Sí, realizamos envíos a todas las provincias con opciones de envío rápido.</p>
+        </div>
+    </div>
+    <div class="faq-item">
+        <button class="faq-question">¿Puedo devolver una prenda si no me gusta?
+            <i class="fas fa-chevron-down arrow"></i>
+        </button>
+        <div class="faq-answer">
+            <p>Ofrecemos devoluciones dentro de los 30 días para compras que cumplan con nuestras políticas.</p>
+        </div>
+    </div>
+</section>
+
+
+  <section class="suscripcion">
+    <h2>¡Suscribite!</h2>
+    <input type="email" id="correo" placeholder="Tu correo electrónico" required>
+    <br>
+    <button onclick="suscribirse()">Suscribirse</button>
+    <p class="mensaje" id="mensaje"></p>
+  </section>
+
+    <script>
+const countdownElement = document.getElementById('countdown');
+
+function startCountdown(endDate) {
+        const interval = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = endDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+        if (distance < 0) {
+            clearInterval(interval);
+            countdownElement.innerHTML = "¡La oferta ha comenzado!";
+        }
+    }, 1000);
+}
+
+const cyberMondayDate = new Date("2025-11-04T03:00:00Z").getTime(); 
+startCountdown(cyberMondayDate);
+
+const faqQuestions = document.querySelectorAll('.faq-question');
+
+faqQuestions.forEach(question => {
+    question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+    });
+});
+
+ function suscribirse() {
+      const correo = document.getElementById('correo').value;
+      const mensaje = document.getElementById('mensaje');
+      
+      if (correo && correo.includes("@")) {
+        mensaje.textContent = "¡Gracias por suscribirte!";
+        mensaje.style.color = "green";
+        document.getElementById('correo').value = "";
+      } else {
+        mensaje.textContent = "Por favor, ingresá un correo válido.";
+        mensaje.style.color = "red";
+      }
+    }
+
+
+    </script>
+
+</body>
+</html>
